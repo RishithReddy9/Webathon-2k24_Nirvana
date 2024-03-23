@@ -1,0 +1,22 @@
+nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #934323;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+ul {
+    flex: 1;
+    list-style: none;
+    text-align: right;
+}
+
+ul li {
+    display: inline;
+    margin: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+}

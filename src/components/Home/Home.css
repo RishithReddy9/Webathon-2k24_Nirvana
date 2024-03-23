@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.jeeBox {
+    height: 400px;
+    width: 300px;
+    background-color: blueviolet;
+}
+
+.neetBox {
+    height: 400px;
+    width: 300px;
+    background-color: blueviolet;
+}
+
+a.jeebtn {
+    text-decoration: none !important;
+    color: black;
+}
+
+a.neetbtn {
+    text-decoration: none !important;
+    color: black;
+}

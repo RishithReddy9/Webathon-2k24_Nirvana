@@ -1,0 +1,51 @@
+.quiz-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.quiz-title {
+    text-align: center;
+}
+
+.file-input {
+    margin-top: 20px;
+}
+
+.upload-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #76ABAE;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.extracted-text {
+    margin-top: 20px;
+}
+
+.section-title {
+    margin-top: 20px;
+}
+
+.questions-container {
+    margin-top: 10px;
+}
+
+.question-list {
+    list-style-type: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.question-item {
+    margin-bottom: 10px;
+}
+
+.option-checkbox {
+    margin-right: 5px;
+}
