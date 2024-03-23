@@ -1,89 +1,74 @@
-import React, { useState, useEffect } from 'react'
-import './QuizPage.css'
+import React, { useState } from 'react';
 
 function QuizPage() {
-    const [questions, setQuestions] = useState([]);
-    const [index, setIndex] = useState(0);
-    // const [question, setQuestion] = useState(questions[index])
-    // let [lock, setLock] =useState(false);
+    const [selectedType, setSelectedType] = useState('All');
+    const [quizzes, setQuizzes] = useState([
+        // Your quiz data
+        { id: 1, name: 'Sports Quiz 1', type: 'Sports', numberOfQuestions: 10, duration: 15 },
+        { id: 2, name: 'General Quiz 1', type: 'General', numberOfQuestions: 15, duration: 20 },
+        { id: 3, name: 'Movies Quiz 1', type: 'Movies', numberOfQuestions: 12, duration: 18 },
+        { id: 4, name: 'Songs Quiz 1', type: 'Songs', numberOfQuestions: 8, duration: 10 },
+        { id: 5, name: 'Sports Quiz 2', type: 'Sports', numberOfQuestions: 12, duration: 20 },
+        { id: 6, name: 'General Quiz 2', type: 'General', numberOfQuestions: 20, duration: 25 },
+        { id: 7, name: 'Movies Quiz 2', type: 'Movies', numberOfQuestions: 10, duration: 15 },
+        { id: 8, name: 'Songs Quiz 2', type: 'Songs', numberOfQuestions: 15, duration: 22 },
+        { id: 9, name: 'Sports Quiz 3', type: 'Sports', numberOfQuestions: 8, duration: 12 },
+        { id: 10, name: 'General Quiz 3', type: 'General', numberOfQuestions: 18, duration: 23 },
+        { id: 11, name: 'Movies Quiz 3', type: 'Movies', numberOfQuestions: 14, duration: 19 },
+        { id: 12, name: 'Songs Quiz 3', type: 'Songs', numberOfQuestions: 12, duration: 18 },
+        { id: 13, name: 'Sports Quiz 4', type: 'Sports', numberOfQuestions: 10, duration: 15 },
+        { id: 14, name: 'General Quiz 4', type: 'General', numberOfQuestions: 16, duration: 21 },
+        { id: 15, name: 'Movies Quiz 4', type: 'Movies', numberOfQuestions: 13, duration: 17 },
+        { id: 16, name: 'Songs Quiz 4', type: 'Songs', numberOfQuestions: 10, duration: 14 },
+        { id: 17, name: 'Sports Quiz 5', type: 'Sports', numberOfQuestions: 12, duration: 18 },
+        { id: 18, name: 'General Quiz 5', type: 'General', numberOfQuestions: 22, duration: 28 },
+        { id: 19, name: 'Movies Quiz 5', type: 'Movies', numberOfQuestions: 11, duration: 16 },
+        { id: 20, name: 'Songs Quiz 5', type: 'Songs', numberOfQuestions: 14, duration: 20 },
+    ]);
 
-    // const checkAns = (e, ans) => {
-
-    //     if (lock === false) {
-
-    //         if (question.ans === ans) {
-
-    //             e.target.classList.add("correct");
-
-    //             setLock(true);
-
-    //         }
-
-    //         else {
-
-    //             e.target.classList.add("wrong"); setLock(true);
-
-    //         }
-
-    //     }
-
-    // }
-
-    const checkAns = (chosenAnswer, correctAnswers) => {
-        // Check if the chosen answer is correct
-        const isCorrect = correctAnswers.some((answer, index) => {
-            const answerKey = `answer_${String.fromCharCode(97 + index)}_correct`;
-            return answer === "true" && correctAnswers[answerKey] === "true";
-        });
-
-        // Handle correct or incorrect answer
-        if (isCorrect) {
-            console.log('Correct!');
-        } else {
-            console.log('Incorrect!');
+    const filterQuizzesByType = (type) => {
+        if (type === 'All') {
+            return quizzes;
         }
+        return quizzes.filter(quiz => quiz.type === type);
     };
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://quizapi.io/api/v1/questions?limit=10', {
-                    method: 'GET',
-                    headers: {
-                        'X-Api-Key': 'Y37cg4bPWIYmx2d2V2Q19lZ0twTDHh0ol5Eq3HZc'
-                    }
-                });
-                const data = await response.json();
-                setQuestions(data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    const currentQuestion = questions.length > 0 ? questions[index] : null;
-
-    if (!currentQuestion) {
-        return <div>Loading...</div>;
-    }
+    const goToQuiz = (quizId) => {
+        console.log(`Navigating to quiz with ID: ${quizId}`);
+        // Implement your navigation logic here
+    };
 
     return (
-        <div className="quiz-container">
-            <h1 className="quiz-question">Quiz Questions</h1>
-            <div>
-                <h2>{index + 1}.{currentQuestion.question}</h2>
-                <ul className="quiz-options">
-                    <li className="quiz-option" onClick={(e) => checkAns(e, 1)}>{currentQuestion.answers.answer_a}</li>
-                    <li className="quiz-option" onClick={(e) => checkAns(e, 2)}>{currentQuestion.answers.answer_b}</li>
-                    <li className="quiz-option" onClick={(e) => checkAns(e, 3)}>{currentQuestion.answers.answer_c}</li>
-                    <li className="quiz-option" onClick={(e) => checkAns(e, 4)}>{currentQuestion.answers.answer_d}</li>
-                </ul>
+        <div className="container mt-5">
+            {/* <div className="btn-group mb-4">
+                {['All', 'Sports', 'General', 'Movies', 'Songs'].map(type => (
+                    <button
+                        key={type}
+                        className={`btn ${selectedType === type ? 'btn-primary' : 'btn-secondary'}`}
+                        onClick={() => setSelectedType(type)}
+                    >
+                        {type}
+                    </button>
+                ))}
+            </div> */}
+
+            <div className="row">
+                {filterQuizzesByType(selectedType).map(quiz => (
+                    <div key={quiz.id} className="col-md-4 mb-4">
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">{quiz.name}</h5>
+                                <p className="card-text">Type: {quiz.type}</p>
+                                <p className="card-text">Number of Questions: {quiz.numberOfQuestions}</p>
+                                <p className="card-text">Duration: {quiz.duration} minutes</p>
+                                <button className="btn btn-primary" onClick={() => goToQuiz(quiz.id)}>Go to Quiz</button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
 }
 
-export default QuizPage
+export default QuizPage;

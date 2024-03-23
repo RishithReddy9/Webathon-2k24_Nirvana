@@ -75,9 +75,7 @@ const ManualType = () => {
 
     return (
         <div className="manual-type-container">
-            <h1>The Ultimate Trivia Quiz</h1>
             {error && <div className="message error">{error}</div>}
-            <hr />
             <div className="questions">
                 {questions.map((question, index) => (
                     <div key={index} className="question">

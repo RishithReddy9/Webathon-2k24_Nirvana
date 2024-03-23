@@ -13,15 +13,15 @@ function Navbar() {
         <div>
             <nav>
                 {/* <img src="" alt="" /> */}
-                <h2>Test App</h2>
+                <a href='/' ><li>Quiz App</li></a>
                 <ul>
                     <li></li>
-                    <li>Services</li>
-                    <li>Contact Us</li>
+                    <a href='/admin'><li>Admin</li></a>
+                    <a href='/quizPage'><li>Take Quiz</li></a>
                     <li>
                         {isAuthenticated ? (
                             <div>
-                                <img src={user.picture} alt={user.name} />
+                                {/* <img src={user.picture} alt={user.name} /> */}
                                 <h2>{user.name}</h2>
                                 <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
                                     Log Out

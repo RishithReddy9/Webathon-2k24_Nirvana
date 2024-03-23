@@ -81,7 +81,6 @@ function OCRSpaceExample() {
 
     return (
         <div className="quiz-container">
-            <h1 className="quiz-title">OCR with OCR.space Example</h1>
             <input type="file" className="file-input" accept="image" id="fileInput" />
             <button onClick={handleUpload} className="upload-btn">Upload & Extract Text</button>
             <div className="extracted-text">
@@ -136,6 +135,11 @@ function OCRSpaceExample() {
                     ))}
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <ManualType />
         </div>
     );
